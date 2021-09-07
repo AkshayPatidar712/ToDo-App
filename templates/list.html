@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-3 shadow" >
+    <table class="table table-hover  text-center" >
+        <thead  >
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Task Title</th>
+                <th scope="col">Task Description</th>
+                <th>
+                    <a href="{% url 'task' %}" class="btn btn-outline-success ">
+                        <i class="fas fa-plus"></i> Add New
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in form %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{form.taskTitle}}</td>
+                <td>{{form.taskDesc}}</td>
+                <td style="padding-left:30px">
+
+                    <a href="{% url 'update' form.id %}" class="btn-text secondary px-0">
+                        <i class="far fa-edit fa-lg"></i></a>
+                    <a class="btn" href="{% url 'delete' form.id %}">
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        </i></a>
+
+
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
