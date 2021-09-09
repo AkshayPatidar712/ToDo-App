@@ -32,7 +32,9 @@
         </nav>
         <form class="p-3" action="" method="POST" autocomplete="off">
             {% csrf_token %}
-            {{form|crispy}}
+            {% comment %} {{form|crispy}} {% endcomment %}
+            {{form.username|as_crispy_field}}<br>
+            {{form.password|as_crispy_field}}
 
             <button type="submit" class="my-3 btn btn-success btn-lg my-2 col-md-4 offset-4"> LOG IN</button>
         </form>

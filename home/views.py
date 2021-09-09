@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import redirect, render
-from .forms import TaskForm
+from .forms import TaskForm, usercreationform
 from .models import Task
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -24,10 +24,10 @@ def login_user(request):
 
 def signup(request):
     if request.method == 'GET':
-        form = UserCreationForm()
+        form = usercreationform()
         return render(request, 'signup.html', {'form': form})
     else:
-        form = UserCreationForm(request.POST)
+        form = usercreationform(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
